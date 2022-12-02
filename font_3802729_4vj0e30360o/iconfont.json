@@ -1,0 +1,23 @@
+{
+  "id": "3802729",
+  "name": "toggle-sidebar",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "33138046",
+      "name": "折叠-展开",
+      "font_class": "zhedie-zhankai",
+      "unicode": "e718",
+      "unicode_decimal": 59160
+    },
+    {
+      "icon_id": "33138048",
+      "name": "折叠-收起",
+      "font_class": "zhedie-shouqi",
+      "unicode": "e717",
+      "unicode_decimal": 59159
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 <template>
-  <div class="sidebar-wrapper">
-    <div class="sidebar-title">
+  <div class="sidebar-wrapper" :class="{ collapse: isCollapse }">
+    <div class="sidebar-title bottom-border">
       <h1>Menu</h1>
     </div>
     <div class="sidebar-item-wrapper">
       <!-- 切换sidebar的列表 -->
-      <div class="sidebar-switch-item-list">
+      <div class="sidebar-switch-item-list bottom-border">
         <div
           v-for="item in $router.options.routes"
           :key="item.path"
@@ -28,11 +28,14 @@
   </div>
 </template>
 <script>
+import bus from "@/store/modules/eventBus.js";
+
 export default {
   data() {
     return {
       currentRouter: this.$router.currentRoute.name,
       currentRouterChildren: this.getChildRoutes(),
+      isCollapse: true,
     };
   },
   computed: {},
@@ -68,6 +71,11 @@ export default {
       }
       // arr = routes.children.find((item) => item.name == route[0].name);
       return routes.children;
+    },
+    changeCollapse() {
+      bus.$emit("switchCollapse", (val) => {
+        this.isCollapse = val;
+      });
     },
   },
 };

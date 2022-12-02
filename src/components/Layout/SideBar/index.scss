@@ -3,12 +3,16 @@
   padding: 0;
 }
 
+.bottom-border {
+  border-bottom: 1px solid #000;
+}
+
 .sidebar-wrapper{
    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     letter-spacing: 0.5px;
     font-weight: 600;
     width: fit-content;
-    min-height: 100vh;
+    height: 100vh;
     padding: 6px 12px;
     box-sizing: border-box;
     background-color: #fff;
@@ -16,12 +20,11 @@
     .sidebar-item-wrapper{
       font-size: 18px;
       width: 220px;
-      min-height: 100%;
       cursor: pointer;
       overflow: hidden;
       transition: width 0.2s;
       color: #000;
-
+      .sidebar-switch-item-list{
       .switch-item a {
         text-decoration: none;
         color: #000;
@@ -29,5 +32,9 @@
           color: red
         }
       }
+      }
+    }
+    .sidebar-item-list {
+      margin-top: 10px;
     }
 }
