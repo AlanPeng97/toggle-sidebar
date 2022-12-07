@@ -22,7 +22,7 @@
       width: 220px;
       cursor: pointer;
       overflow: hidden;
-      transition: width 0.2s;
+      transition: width 1s;
       color: #000;
       .sidebar-switch-item-list{
       .switch-item a {
@@ -37,4 +37,8 @@
     .sidebar-item-list {
       margin-top: 10px;
     }
+}
+
+.collapse .sidebar-item-wrapper {
+  width: 82px;
 }

@@ -6,8 +6,13 @@ import "@/styles/reset.scss";
 import "@/styles/common.scss";
 // iconfont CSS
 import "@/assets/iconfont/iconfont.css";
+// axios
+import axios from "axios";
 import router from "@/router/index";
 
+Vue.prototype.$http = axios;
+axios.defaults.baseURL =
+  " https://mock.mengxuegu.com/mock/638d8d8c93a67b5f106692c4/toggle_sidebar";
 Vue.config.productionTip = false;
 
 new Vue({

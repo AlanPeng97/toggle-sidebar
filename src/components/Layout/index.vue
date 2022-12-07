@@ -22,10 +22,20 @@ export default {
     Header,
   },
   data() {
-    return {};
+    return {
+      data: "",
+    };
   },
   computed: {},
-  methods: {},
+  methods: {
+    async getData() {
+      const { data: res } = await this.$http.get("/example");
+      this.data = res;
+    },
+  },
+  created() {
+    this.getData();
+  },
 };
 </script>
 <style lang="scss" scoped>

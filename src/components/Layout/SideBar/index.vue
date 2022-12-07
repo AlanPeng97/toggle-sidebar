@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-wrapper" :class="{ collapse: isCollapse }">
+  <div class="sidebar-wrapper" :class="{ collapse: !isCollapse }">
     <div class="sidebar-title bottom-border">
       <h1>Menu</h1>
     </div>
@@ -23,7 +23,7 @@
           <div>{{ item.name }}</div>
         </div>
       </div>
-      <!-- <button @click="check">check</button> -->
+      <button @click="check">check</button>
     </div>
   </div>
 </template>
@@ -39,9 +39,12 @@ export default {
     };
   },
   computed: {},
-  // created() {
-  //   this.changeRouter();
-  // },
+  mounted() {
+    // this.changeCollapse();
+  },
+  created() {
+    this.changeCollapse();
+  },
   watch: {
     $route(to) {
       // console.log(to);
@@ -55,10 +58,13 @@ export default {
       // console.log(this.currentRouter);
     },
     check: function () {
-      console.log(this.currentRouter);
-      console.log(this.$router.options.routes);
-      console.log(this.$route.matched);
-      console.log(this.childRoutes());
+      // console.log(this.currentRouter);
+      // console.log(this.$router.options.routes);
+      // console.log(this.$route.matched);
+      // console.log(this.childRoutes());
+      // console.log(this.isCollapse);
+      const modules = require.context("@/views/", true, /\.vue$/);
+      console.log(modules("./about/index.vue"));
     },
     getChildRoutes() {
       let routes = {
@@ -73,9 +79,10 @@ export default {
       return routes.children;
     },
     changeCollapse() {
-      bus.$emit("switchCollapse", (val) => {
+      bus.$on("switchCollapse", (val) => {
         this.isCollapse = val;
       });
+      return this.isCollapse;
     },
   },
 };

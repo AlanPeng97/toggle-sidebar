@@ -1,35 +1,37 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import platform1Router from "./platform1";
-import platform2Router from "./platform2";
-Vue.use(VueRouter);
+import Router from "vue-router";
+// import platform1Router from "./platform1";
+// import platform2Router from "./platform2";
+import { staticRouter } from "@/router/modules/stacticRouter";
+import { initDynamicRouter } from "@/router/modules/dynamicRouter";
 
-import Home from "@/views/home/index.vue";
+Vue.use(Router);
 
-const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () => import("@/views/about/index.vue"),
-  },
-  {
-    path: "/platform1",
-    name: "platform1",
-    component: () => import("@/views/platform1/index.vue"),
-    children: platform1Router,
-  },
-  {
-    path: "/platform2",
-    name: "platform2",
-    component: () => import("@/views/platform2/index.vue"),
-    children: platform2Router,
-  },
-];
+const createRouter = () =>
+  new Router({
+    routes: staticRouter,
+  });
 
-const router = new VueRouter({ routes });
+const router = createRouter();
+
+let isToken = true;
+router.beforeEach(async (to, from, next) => {
+  if (isToken) {
+    await initDynamicRouter();
+    // next({ ...to, replace: true });
+    router.replace(to.path);
+
+    isToken = false;
+  } else {
+    next();
+  }
+});
+
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.match = newRouter.match;
+  console.log("reset"); // the relevant part
+}
+// console.log(router.options.routes);
+
 export default router;
